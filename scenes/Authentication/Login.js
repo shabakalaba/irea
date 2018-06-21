@@ -1,19 +1,20 @@
 import React from 'react';
-import { TouchableOpacity, StyleSheet, Text, View, TextInput } from 'react-native';
+import { Alert, TouchableOpacity, StyleSheet, Text, View, TextInput } from 'react-native';
 import ViewContainer from '../../components/ViewContainer';
-import StatusbarBackground from '../../components/StatusbarBackground';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import { firebaseRef } from '../../services/firebase';
 
 export default class Login extends React.Component {
+    
     constructor(props)
     {
+        
         super(props)
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
         }
 
         this._login = this._login.bind(this)
@@ -21,17 +22,24 @@ export default class Login extends React.Component {
 
     _login()
     {
-        console.log(this.state.email)
+        var {navigate} = this.props.navigation;
+        var {isError} = false;  
+        isError = false;
         firebaseRef.auth().signInWithEmailAndPassword(this.state.email, this.state.password).catch(function(error){
-            console.log(error.code)
-            console.log(error.message)
+            isError = true
+            console.log(isError)
+            Alert.alert("Invalid Username/Password")
         })
+        if(isError == false)
+        {
+            navigate("cart")
+        }      
     }
     render(){
+        var {navigate} = this.props.navigation;
         return(
             <ViewContainer>
-                <StatusbarBackground />
-
+                
                 <View style={styles.imageContainer}>
                     <Text style={styles.image}>IREA</Text>
                 </View>
@@ -59,7 +67,7 @@ export default class Login extends React.Component {
                         <Button onPress={this._login}><Text>Login</Text></Button>
                     </View>
                     <View style={styles.register}>
-                        <TouchableOpacity style={styles.registerButton}>
+                        <TouchableOpacity onPress={ ()=> navigate("register") } style={styles.registerButton}>
                             <Text style={styles.registerButtonText}>Create Account</Text>
                         </TouchableOpacity>
                     </View>

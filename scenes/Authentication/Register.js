@@ -1,7 +1,6 @@
 import React from 'react';
 import { TouchableOpacity, StyleSheet, Text, View, TextInput } from 'react-native';
 import ViewContainer from '../../components/ViewContainer';
-import StatusbarBackground from '../../components/StatusbarBackground';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 export default class Login extends React.Component {
@@ -18,7 +17,6 @@ export default class Login extends React.Component {
     render(){
         return(
             <ViewContainer>
-                <StatusbarBackground />
 
                 <View style={styles.imageContainer}>
                     <Text style={styles.image}>IREA</Text>
