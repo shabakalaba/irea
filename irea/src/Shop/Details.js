@@ -37,16 +37,48 @@ export default class ItemComponent extends Component {
       <View style={styles.smallContainer}>
         {this.props.items.map((item, index) => {
             return (
-                <View key={index} style={styles.productSmall}>
+                <View key={index}>
+                <View style={styles.productSmall}>
+                  <TouchableOpacity onPress={() => {this.setModalVisible(true);}}>
                     <Image source={{uri: item.image}} style={{height: 150 , width: 130}} />
-                    <Text style={styles.productTitleSmall}>{item.name}</Text>
-                    <Text style={styles.stockLevel}>{item.short_description}</Text>
-                    <Text style={styles.productPriceSmall}>${item.price}</Text>
-                    <Text style={styles.stockLevel}>In-Stock</Text>
-                    <TouchableOpacity onPress={()=>this.hello(item)} style={styles.addToCartSmall}>
-                        <Text>Add to Cart</Text>
-                    </TouchableOpacity>
+                  </TouchableOpacity>
+                  <Text style={styles.productTitleSmall}>{item.name}</Text>
+                  <Text style={styles.productPriceSmall}>${item.price}</Text>
+                  <TouchableOpacity onPress={()=>this.hello(item)} style={styles.addToCartSmall}>
+                    <Text>Add to Cart</Text>
+                  </TouchableOpacity>
                 </View>
+
+                <Modal animationType="slide" transparent={false} modal={item.index} visible={this.state.modalVisible} >
+                <ScrollView>
+                  <StatusBar barStyle="default"/>
+                  <View style={styles.productList}>
+                    <TouchableHighlight onPress={() => { this.setModalVisible(!this.state.modalVisible) }}>
+                      <Text style={{paddingTop:30}}>Back</Text>
+                    </TouchableHighlight>
+                    <Image source={{uri: item.image}} style={{height: 400, width: 'auto', marginTop: 20}} />
+                    <Text style={styles.productTitle}>{item.name}</Text>
+                    <Text style={styles.stockLevel}>{item.short_description}</Text>
+                    <Text style={styles.productPrice}>${item.price}</Text>
+                    <Text style={styles.stockLevel}>In-Stock - Usually ships within 24 hours.</Text>
+                    <View style={{paddingTop: 15}}>
+                      <Text style={styles.productTitleSmall}>DESCRIPTION</Text>
+                      <Text style={styles.productDescription}>{item.long_description}</Text>
+                    </View>
+                    <View style={{paddingTop: 15}}>
+                      <Text style={styles.productTitleSmall}>PRODUCT DIMENSIONS</Text>
+                      <Text style={styles.productDescription}>{item.dimensions}</Text>
+                    </View>
+                    <View style={{paddingTop: 15, paddingBottom: 25}}>
+                      <Text style={styles.productDescription}>{item.instructions}</Text>
+                    </View>
+                    <TouchableOpacity onPress={()=>this.hello(item)} style={styles.addToCart}>
+                      <Text>Add to Cart</Text>
+                    </TouchableOpacity>
+                  </View>
+                </ScrollView>
+              </Modal>
+              </View>
             )
         })}
       </View>
@@ -87,7 +119,7 @@ const styles = StyleSheet.create({
       smallContainer: {                
           flexDirection: 'row',
           flexWrap: 'wrap',
-          justifyContent: 'center'
+          justifyContent: 'center',
         },
         productSmall: {
           padding: 10,
@@ -113,7 +145,8 @@ const styles = StyleSheet.create({
         },
         stockLevel: {
           fontSize: 12,
-          color: 'grey'
+          color: 'grey',
+          paddingBottom: 10
         }
       }
   );

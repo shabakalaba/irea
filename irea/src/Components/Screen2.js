@@ -4,6 +4,19 @@ import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image, Button} fr
 
 // Creating the Components
 export default class Screen2 extends React.Component {
+  static navigationOptions = {
+    headerStyle: {
+      backgroundColor: '#00aeef'
+    },
+    headerTitleStyle: {
+      color: 'white'
+    },
+    headerLeft: (
+      <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+        <Text style={{color:'white', paddingLeft: 20}}>Back</Text>
+      </TouchableOpacity>
+    )
+  };
   render() {
     return (
       <View style={styles.container}>
@@ -62,7 +75,7 @@ export default class Screen2 extends React.Component {
             <Text style={{flex: 1, textAlign: 'right'}}>128.82</Text>
           </View>
           <View style={styles.checkoutButtons}>
-            <TouchableOpacity style={styles.checkoutButton}>
+            <TouchableOpacity onPress={() => alert('Thank you for your purchase!')} style={styles.checkoutButton}>
               <Text style={styles.checkout}>CHECKOUT</Text>
             </TouchableOpacity>
           </View>

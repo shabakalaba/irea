@@ -1,14 +1,12 @@
 // Import a library tp help create components
 import React from 'react';
-import { StyleSheet, View, StatusBar } from 'react-native';
-import Header from './src/Components/Header';
+import { StyleSheet, View, StatusBar, TouchableOpacity, Text } from 'react-native';
 import TabNav from './src/Components/TabNav';
 // Creating the Components
 export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Header />
         <StatusBar backgroundColor="green" barStyle="light-content"/>
         <TabNav />
       </View>

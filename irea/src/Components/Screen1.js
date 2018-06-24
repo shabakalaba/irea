@@ -1,6 +1,6 @@
 // Import a library tp help create components
 import React from 'react';
-import { StyleSheet, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView, TouchableOpacity, Text, View, Alert } from 'react-native';
 import CartItems from '../Shop/CartItems';
 
 // Creating the Components
@@ -11,20 +11,34 @@ export default class Screen1 extends React.Component {
     },
     headerTitleStyle: {
       color: 'white'
-    }
+    },
+    headerRight: ( 
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Screen2') } >
+          <Text style={{paddingRight: 20, color:'white'}}>Cart</Text>
+        </TouchableOpacity>
+    )
   };
+
+  _toCart(){
+    Alert.alert('You tapped the button!')
+  };
+
   render() {
     return (
+      <View>
         <ScrollView>
-            <CartItems />
+          <CartItems />
         </ScrollView>
+        </View>
     );
   }
 }
 
 // Styling
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
+  button: {
+    flex:1,
+    height: 30,
+    justifyContent: 'center'
   }
 });
