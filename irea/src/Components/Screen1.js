@@ -5,7 +5,7 @@ import CartItems from '../Shop/CartItems';
 
 // Creating the Components
 export default class Screen1 extends React.Component {
-  static navigationOptions = {
+  static navigationOptions = ({navigation}) => ({
     headerStyle: {
       backgroundColor: '#00aeef'
     },
@@ -13,11 +13,11 @@ export default class Screen1 extends React.Component {
       color: 'white'
     },
     headerRight: ( 
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('Screen2') } >
+        <TouchableOpacity onPress={() => navigation.navigate('Screen2') } >
           <Text style={{paddingRight: 20, color:'white'}}>Cart</Text>
         </TouchableOpacity>
     )
-  };
+  });
 
   _toCart(){
     Alert.alert('You tapped the button!')

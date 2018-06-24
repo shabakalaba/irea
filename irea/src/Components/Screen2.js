@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image, Button} fr
 
 // Creating the Components
 export default class Screen2 extends React.Component {
-  static navigationOptions = {
+  static navigationOptions = ({navigation}) => ({
     headerStyle: {
       backgroundColor: '#00aeef'
     },
@@ -12,25 +12,15 @@ export default class Screen2 extends React.Component {
       color: 'white'
     },
     headerLeft: (
-      <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
         <Text style={{color:'white', paddingLeft: 20}}>Back</Text>
       </TouchableOpacity>
     )
-  };
+  });
   render() {
     return (
       <View style={styles.container}>
-
-        <View style={{borderBottomColor: 'lightgrey', borderBottomWidth: 1}}>
-          <Text style={styles.title}>YOUR BASKET</Text>
-
-          {/* This is where we count how many items are in the count */}
-
-          <Text style={styles.itemCount}># items</Text>
-        </View>
-
         <ScrollView style={styles.itemsContainer}>
-
           {/* This is where the loop starts to populate the cart items */}
           <View style={styles.cartItem}>
             <View style={styles.itemImgContainer}>
