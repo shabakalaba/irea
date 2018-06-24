@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {  StyleSheet, Text, View, TouchableOpacity, Image, ScrollView, TouchableHighlight, Modal, StatusBar } from 'react-native';
+import {  StyleSheet, Text, View, TouchableOpacity, Image, ScrollView, TouchableHighlight, Modal, StatusBar, Alert } from 'react-native';
 import PropTypes from 'prop-types';
 
 export default class ItemComponent extends Component {
@@ -20,6 +20,9 @@ export default class ItemComponent extends Component {
 
     hello(item)
     {   
+        Alert.alert(
+            'Item Added',
+            'This item has been added to your basket!')
         this.state.cart.push(item)
         console.log(this.state.cart)
     }

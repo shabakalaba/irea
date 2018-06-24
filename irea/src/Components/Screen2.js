@@ -1,6 +1,6 @@
 // Import a library tp help create components
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image, Button} from 'react-native';
+import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Image, Alert} from 'react-native';
 
 // Creating the Components
 export default class Screen2 extends React.Component {
@@ -65,7 +65,16 @@ export default class Screen2 extends React.Component {
             <Text style={{flex: 1, textAlign: 'right'}}>128.82</Text>
           </View>
           <View style={styles.checkoutButtons}>
-            <TouchableOpacity onPress={() => alert('Thank you for your purchase!')} style={styles.checkoutButton}>
+            <TouchableOpacity onPress={() => 
+              Alert.alert(
+                'Confirm Order',
+                'Are you sure you want to process this order?',
+                [
+                  {text: 'Confirm', onPress: () => Alert.alert('Thank you!', 'Your order is being processed')},
+                  {text: 'Not Yet', onPress: () => console.log('Cancel Confirmation')},
+                ],
+                { cancelable: false }
+                )} style={styles.checkoutButton}>
               <Text style={styles.checkout}>CHECKOUT</Text>
             </TouchableOpacity>
           </View>

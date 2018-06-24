@@ -19,17 +19,11 @@ export default class Screen1 extends React.Component {
     )
   });
 
-  _toCart(){
-    Alert.alert('You tapped the button!')
-  };
-
   render() {
     return (
-      <View>
         <ScrollView>
           <CartItems />
         </ScrollView>
-        </View>
     );
   }
 }
