@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Splash from './Splash';
+
 import firebase from 'firebase';
 import Login from './src/Login/Login';
 
@@ -19,10 +19,14 @@ export default class App extends React.Component {
 
 
     // INSERT INTO DATABASE
-    firebase.database().ref('user/004').set(
+    firebase.database().ref('products/001').set(
       {
-        name: 'Nobody Knows',
-        age: 12
+        name: '',
+        short_descirption: '',
+        description: '',
+        price: 99.99,
+        stock: 112,
+        instructions: 'This product requires assembly.'
       }
     ).then(()=> {
       console.log('inserted');
