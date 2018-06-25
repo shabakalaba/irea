@@ -1,27 +1,24 @@
+// Import a library tp help create components
 import React from 'react';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
-import { createStackNavigator } from 'react-navigation'
-import firebase from 'firebase';
-import Login from './scenes/Authentication/Login';
-import Register from './scenes/Authentication/Register';
-import CartItems from './scenes/Store/CartItems';
+import { StyleSheet, View, StatusBar, TouchableOpacity, Text } from 'react-native';
+import TabNav from './src/Components/TabNav';
+import PropTypes from 'prop-types';
+// Creating the Components
+export default class App extends React.Component {
 
-const Navigation = createStackNavigator({
-  cart: {screen: CartItems,
-    navigationOptions:{
-      headerLeft: null
-    },
-  },
-  Login: {screen: Login,
-          navigationOptions:{
-            header: false,
-          }
-        },
-  register: {screen: Register},
-  
+  render() {
+    return (
+      <View style={styles.container}>
+        <StatusBar backgroundColor="green" barStyle="light-content"/>
+        <TabNav />
+      </View>
+    );
+  }
+}
+
+// Styling
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
 });
-export default Navigation;
-
-
-
-
