@@ -17,30 +17,42 @@ export default class Screen2 extends React.Component {
       </TouchableOpacity>
     )
   });
+  
   render() {
-    return (
+    
+    const { navigation } = this.props;
+    const yourCart = navigation.getParam('theCart', 'Cart is empty');
+    return (      
       <View style={styles.container}>
+        <View style={{borderBottomColor: 'lightgrey', borderBottomWidth: 1}}>
+          <Text style={styles.title}>YOUR BASKET</Text>
+        </View>
         <ScrollView style={styles.itemsContainer}>
           {/* This is where the loop starts to populate the cart items */}
-          <View style={styles.cartItem}>
-            <View style={styles.itemImgContainer}>
-              <Image style={{height: 75, width: 75}} source={{uri: 'https://www.ikea.com/PIAimages/0243994_PE383246_S5.JPG'}} />
-            </View>
-            <View style={styles.itemDescription}>
-              <Text>Item Name:</Text>
-              <Text>SKU:</Text>
-              <Text>Price:</Text>
-            </View>
-            <View style={styles.itemInfo}>
-              <Text style={{textAlign: 'right'}}>Shelf</Text>
-              <Text style={{textAlign: 'right'}}>1</Text>
-              <Text style={{textAlign: 'right'}}>$99.00</Text>
-              <Text> </Text>
-              <TouchableOpacity>
-                <Text style={{textAlign: 'right', color: 'blue'}}>Remove</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+          {this.props.screenProps.cartTest.map((item, index) => {
+                return (
+                    <View key={index} style={styles.cartItem}>
+                    <View style={styles.itemImgContainer}>
+                      <Image style={{height: 75, width: 75}} source={{uri: item.image}} />
+                    </View>
+                    <View style={styles.itemDescription}>
+                      <Text>Item Name:</Text>
+                      <Text>SKU:</Text>
+                      <Text>Price:</Text>
+                    </View>
+                    <View style={styles.itemInfo}>
+                      <Text style={{textAlign: 'right'}}>{item.name}</Text>
+                      <Text style={{textAlign: 'right'}}>{index}</Text>
+                      <Text style={{textAlign: 'right'}}>${item.price}</Text>
+                      <Text> </Text>
+                      <TouchableOpacity>
+                        <Text style={{textAlign: 'right', color: 'blue'}}>Remove</Text>
+                      </TouchableOpacity>
+                    </View>
+                  </View>
+                )
+            })}
+          
           {/* This is where the loop ends */}
 
         </ScrollView>
@@ -53,16 +65,16 @@ export default class Screen2 extends React.Component {
           </View>
           <View style={{flex: 1}}>
             {/* This is where we calculate the total's */}
-            <Text style={{textAlign: 'right'}}>$99.00</Text>
-            <Text style={{textAlign: 'right'}}>$15.00</Text>
-            <Text style={{textAlign: 'right'}}>$14.82</Text>
+            <Text style={{textAlign: 'right'}}></Text>
+            <Text style={{textAlign: 'right'}}></Text>
+            <Text style={{textAlign: 'right'}}></Text>
           </View>
         </View>
 
         <View style={styles.paymentContainer}>
           <View style={{flexDirection: 'row'}}>
             <Text style={{flex: 1}}>Order Total:</Text>
-            <Text style={{flex: 1, textAlign: 'right'}}>128.82</Text>
+            <Text style={{flex: 1, textAlign: 'right'}}></Text>
           </View>
           <View style={styles.checkoutButtons}>
             <TouchableOpacity onPress={() => 

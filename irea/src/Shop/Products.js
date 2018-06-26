@@ -3,29 +3,9 @@ import {  StyleSheet, Text, View, TouchableOpacity, Image, ScrollView, Touchable
 import PropTypes from 'prop-types';
 
 export default class ItemComponent extends Component {
-    constructor(props)
-    {
-        
-        super(props)
-
-        this.state = {
-            cart: []
-        }
-
-        this.hello = this.hello.bind(this)
-    }
-    static propTypes = {
-        items: PropTypes.array.isRequired
-    };
-
-    hello(item)
-    {   
-        Alert.alert(
-            'Item Added',
-            'This item has been added to your basket!')
-        this.state.cart.push(item)
-        console.log(this.state.cart)
-    }
+  static propTypes = {
+      items: PropTypes.array.isRequired
+  };
 
     state = {
         modalVisible: false,
@@ -34,6 +14,9 @@ export default class ItemComponent extends Component {
     setModalVisible (visible) {
         this.setState({modalVisible: visible});
     }
+
+
+
 
   render() {
     return (
@@ -46,7 +29,7 @@ export default class ItemComponent extends Component {
                     <Text style={styles.stockLevel}>{item.short_description}</Text>
                     <Text style={styles.productPriceSmall}>${item.price}</Text>
                     <Text style={styles.stockLevel}>In-Stock</Text>
-                    <TouchableOpacity onPress={()=>this.hello(item)} style={styles.addToCartSmall}>
+                    <TouchableOpacity onPress={()=> this.hello(item)} style={styles.addToCartSmall}>
                         <Text>Add to Cart</Text>
                     </TouchableOpacity>
                 </View>
@@ -87,36 +70,36 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       paddingTop: 5
     },
-      smallContainer: {                
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          justifyContent: 'center'
-        },
-        productSmall: {
-          padding: 10,
-          margin: 15,
-          backgroundColor: '#F8F8F8'
-        },
-        productTitleSmall: {
-          fontSize: 15,
-          fontWeight: 'bold',
-          paddingTop: 5
-        },
-        productPriceSmall: {
-          fontSize: 18,
-          fontWeight: 'bold'
-        },
-        addToCartSmall: {
-          alignItems: 'center',
-          justifyContent: 'center',
-          backgroundColor: '#FFDB5E',
-          height: 35,
-          marginTop: 10,
-          borderRadius: 2
-        },
-        stockLevel: {
-          fontSize: 12,
-          color: 'grey'
-        }
+    smallContainer: {                
+        flexDirection: 'row',
+        flexWrap: 'wrap',
+        justifyContent: 'center'
+      },
+      productSmall: {
+        padding: 10,
+        margin: 15,
+        backgroundColor: '#F8F8F8'
+      },
+      productTitleSmall: {
+        fontSize: 15,
+        fontWeight: 'bold',
+        paddingTop: 5
+      },
+      productPriceSmall: {
+        fontSize: 18,
+        fontWeight: 'bold'
+      },
+      addToCartSmall: {
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#FFDB5E',
+        height: 35,
+        marginTop: 10,
+        borderRadius: 2
+      },
+      stockLevel: {
+        fontSize: 12,
+        color: 'grey'
       }
+    }
   );
